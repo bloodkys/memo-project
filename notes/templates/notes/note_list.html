@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    @font-face {
+    font-family: 'RixYeoljeongdo_Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2102-01@1.0/RixYeoljeongdo_Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+    h1{
+        font-family: 'RixYeoljeongdo_Regular';
+    }
+    a {
+        text-decoration-line: none;
+    }
+    .memo-create {
+        background-color: chartreuse;
+        text-decoration-line: none;
+    }
+    .memo-list {
+        background-color:burlywood;
+        text-decoration-line: none;
+    }
+    table {
+        border: 1px;
+        
+        }
+</style>
+<body>
+    <h1>메모장</h1>
+    <div class="memo-create">
+    <a href="{% url 'note_create' %}">메모생성</a><br>
+    </div>
+    <div class="memo-list">
+        <table>
+    {% for note in notes %}
+    <a href="{% url 'note_detail' note.pk %}">{{ note.title }}</a><br>
+    {% endfor %}
+        </table>   
+    </div>
+</body>
+</html>
