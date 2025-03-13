@@ -12,36 +12,81 @@
     font-weight: normal;
     font-style: normal;
 }
+    @font-face {
+    font-family: 'Ownglyph_corncorn-Rg';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2412-1@1.0/Ownglyph_corncorn-Rg.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+    @font-face {
+    font-family: 'NoonnuBasicGothicRegular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noon-2410@1.0/NoonnuBasicGothicRegular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
     h1{
         font-family: 'RixYeoljeongdo_Regular';
     }
     a {
         text-decoration-line: none;
     }
-    .memo-create {
-        background-color: chartreuse;
-        text-decoration-line: none;
-    }
+  
+    
     .memo-list {
-        background-color:burlywood;
+        background-color:rgb(247, 246, 245);
         text-decoration-line: none;
+        text-align: center;
+        font-size: 20px;
+        font-family: 'Ownglyph_corncorn-Rg';
+        
     }
     table {
         border: 1px;
         
         }
+    .memo-create {
+        background-color: rgb(178, 146, 123);
+        border-radius: 10px;
+        font-size: 30px;
+        font-family: 'NoonnuBasicGothicRegular'; 
+        text-align: center;
+        display: block; /* 블록 요소로 변경 */
+        width: fit-content; /* 버튼 크기를 내용에 맞게 */
+        margin-left: auto; /* 오른쪽 정렬 */
+        margin-right: 10px; /* 오른쪽 여백 추가 (선택 사항) */
+        padding: 10px 20px; /* 버튼 패딩 추가 */
+        
+    }
+    .memo {
+        background-color: aliceblue;
+        border: 2px solid black;
+        text-align: left;
+        margin: 10px 10px 0 10px;
+        padding: 20px;
+        border-radius: 10px;
+    }
+    
+    .main {
+        font-size: 40px;
+        text-align: center;
+    }
+
+    body {
+        background-color: #66BBDE;
+        background-image: url('https://search.pstatic.net/sunny/?src=https%3A%2F%2Fpng.pngtree.com%2Fpng-clipart%2F20230927%2Foriginal%2Fpngtree-blank-white-note-paper-with-binder-mockups-png-image_13149298.png&type=ff332_332')
+    }
 </style>
 <body>
-    <h1>메모장</h1>
-    <div class="memo-create">
-    <a href="{% url 'note_create' %}">메모생성</a><br>
-    </div>
+    <h1 class = "main">메모장</h1>
+    <button class="memo-create">
+    <a href="{% url 'note_create' %}">글쓰기</a><br>
+    </button>
     <div class="memo-list">
-        <table>
-    {% for note in notes %}
-    <a href="{% url 'note_detail' note.pk %}">{{ note.title }}</a><br>
+            {% for note in notes %}
+    <div class="memo"><a href="{% url 'note_detail' note.pk %}">{{ note.title }}</a></div><br>
+        <a class="note-delete" href="{% url 'note_delete' note.pk %}">삭제</a>
     {% endfor %}
-        </table>   
     </div>
+    
 </body>
 </html>
